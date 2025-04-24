@@ -5,6 +5,7 @@ import { addTodo } from "../redux/todoSlice";
 const AddTodo = () => {
   const [text, setText] = useState("");
   const [dueDate, setDueDate] = useState("");
+  const [priority, setPriority] = useState("");
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -27,6 +28,11 @@ const AddTodo = () => {
         value={dueDate}
         onChange={(e) => setDueDate(e.target.value)} 
       />
+      <select value={priority} onChange={(e) => setPriority(e.target.value)}>
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+      </select>
       <button type="submit">Add Todo</button>
     </form>
   );
