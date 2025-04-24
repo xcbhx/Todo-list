@@ -1,7 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = [
-  { id: 1, text: "Learn Redux", completed: false },
+  { 
+    id: 1, 
+    text: "Learn Redux", 
+    completed: false,
+    dueDate: "2025-12-31"
+  },
 ];
 
 const todoSlice = createSlice({
@@ -9,7 +14,13 @@ const todoSlice = createSlice({
   initialState,
   reducers: {
     addTodo: (state, action) => {
-      state.push({ id: Date.now(), text: action.payload, completed: false });
+      const { text, dueDate } = action.payload
+      state.push({ 
+        id: Date.now(), 
+        text,
+        completed: false,
+        dueDate,
+      });
     },
     toggleComplete: (state, action) => {
       const todo = state.find(todo => todo.id === action.payload);
