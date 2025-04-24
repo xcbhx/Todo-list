@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleComplete, deleteTodo } from "../redux/todoSlice";
 import { FILTERS } from "../redux/filtersSlice"; 
+import { SORTING } from "../redux/sortingSlice";
 
 const TodoList = () => {
   const todos = useSelector((state) => state.todos); 
   const filter = useSelector((state) => state.filters); 
+  const sorting = useSelector((state) => state.sorting);
   const dispatch = useDispatch();
   const [removingId, setRemovingId] = useState(null);
 
@@ -23,11 +25,17 @@ const TodoList = () => {
     if (filter === FILTERS.COMPLETED) return todo.completed;
     return true; 
   });
+
+  const sortedTodos = [...filteredTodos].sort((a, b) => {
+    if (sorting === SORTING.NEWEST_FIRST) return b.id - a.id;
+    if (sorting === SORTING.OLDEST_FIRST) return a.id - b.id;
+    if (sorting === SORTING.COMPLETED_FIRST) return b.completed - a.completed;
+  });
   
   
   return (
     <ul>
-      {filteredTodos.map((todo) => ( 
+      {sortedTodos.map((todo) => ( 
         <li
           key={todo.id}
           className={`${todo.completed ? "completed" : ""} ${removingId === todo.id ? "removed" : ""}`}
