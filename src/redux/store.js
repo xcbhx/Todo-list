@@ -3,7 +3,12 @@ import todoReducer from "./todoSlice";
 import filtersReducer from "./filtersSlice";
 import { loadState, saveState } from "./localStorage";
 
-const preloadedState = loadState() || { todos: [] }; 
+const preloadedState = loadState() || { 
+  todos: [
+    { id: 1, text: "Learn Redux", completed: false }
+  ], 
+  filters: 'all',
+}; 
 
 export const store = configureStore({
   reducer: {
