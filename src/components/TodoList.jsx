@@ -45,8 +45,10 @@ const TodoList = () => {
             checked={todo.completed}
             onChange={() => dispatch(toggleComplete(todo.id))}
           />
-          {todo.text}
+          <div>{todo.text}</div>
+          <div>{todo.dueDate}</div>
           <button onClick={() => handleDelete(todo.id)}>❌</button>
+          <div>{todo.priority}</div>
         </li>
       ))}
     </ul>

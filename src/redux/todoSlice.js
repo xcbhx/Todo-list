@@ -7,7 +7,7 @@ const initialState = [
     completed: false,
     dueDate: "2025-12-31",
     priority: "High",
-    category: "Work"
+    // category: "Work"
   },
 ];
 
@@ -16,14 +16,14 @@ const todoSlice = createSlice({
   initialState,
   reducers: {
     addTodo: (state, action) => {
-      const { text, dueDate } = action.payload
+      const { text, dueDate, priority} = action.payload
       state.push({ 
         id: Date.now(), 
         text,
-        completed: false,
         dueDate,
-        priority: action.payload.priority,
-        category: action.payload.category,
+        priority,
+        // category,
+        completed: false,
       });
     },
     toggleComplete: (state, action) => {
