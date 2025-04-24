@@ -6,6 +6,7 @@ const AddTodo = () => {
   const [text, setText] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [priority, setPriority] = useState("");
+  const [category, setCategory] = useState("");
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -32,6 +33,11 @@ const AddTodo = () => {
         <option value="Low">Low</option>
         <option value="Medium">Medium</option>
         <option value="High">High</option>
+      </select>
+      <select value={category} onChange={(e) => setCategory(e.target.value)}>
+        <option value="Work">Work</option>
+        <option value="Personal">Personal</option>
+        <option value="Errands">Errands</option>
       </select>
       <button type="submit">Add Todo</button>
     </form>

@@ -6,7 +6,8 @@ const initialState = [
     text: "Learn Redux", 
     completed: false,
     dueDate: "2025-12-31",
-    priority: "High"
+    priority: "High",
+    category: "Work"
   },
 ];
 
@@ -22,6 +23,7 @@ const todoSlice = createSlice({
         completed: false,
         dueDate,
         priority: action.payload.priority,
+        category: action.payload.category,
       });
     },
     toggleComplete: (state, action) => {
